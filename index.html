@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sztella Bácsi | Fine Art & Sculptural Design</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* MINIMALIST LUXURY SYSTEM */
+        :root {
+            --bg: #fcfbf9;
+            --surface: #ffffff;
+            --text-main: #111111;
+            --text-muted: #777777;
+            --border: #ece8e1;
+            --accent-gold: #b39252;
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(252, 251, 249, 0.85);
+            backdrop-filter: blur(12px);
+            transition: all 0.5s var(--ease);
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            letter-spacing: 6px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+
+        nav a {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.4s var(--ease);
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 8% 60px;
+        }
+
+        .hero-sub {
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            font-weight: 300;
+            line-height: 1.15;
+            max-width: 900px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .hero-desc {
+            max-width: 580px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        /* BUTTONS */
+        .btn-minimal {
+            display: inline-block;
+            padding: 18px 45px;
+            border: 1px solid var(--text-main);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transition: all 0.4s var(--ease);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .btn-minimal:hover {
+            background-color: var(--text-main);
+            color: var(--bg);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 160px 8%;
+        }
+
+        .section-meta {
+            text-align: center;
+            margin-bottom: 90px;
+        }
+
+        .section-tag {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* PHILOSOPHY / ABOUT */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .philosophy-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .philosophy-quote {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--text-main);
+            margin: 40px 0;
+            padding-left: 25px;
+            border-left: 1px solid var(--accent-gold);
+        }
+
+        /* GALLERY FILTER & GRID */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 70px;
+        }
+
+        .filter-link {
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding-bottom: 8px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s var(--ease);
+        }
+
+        .filter-link.active, .filter-link:hover {
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 60px 40px;
+        }
+
+        .artwork-item {
+            cursor: pointer;
+            transition: transform 0.6s var(--ease);
+        }
+
+        .artwork-img-wrapper {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background-color: #f4f2ed;
+            margin-bottom: 25px;
+        }
+
+        .artwork-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%);
+            transition: transform 0.8s var(--ease), filter 0.8s var(--ease);
+        }
+
+        .artwork-item:hover .artwork-img-wrapper img {
+            transform: scale(1.03);
+            filter: grayscale(0%);
+        }
+
+        .artwork-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .artwork-title {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 4px;
+        }
+
+        .artwork-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .artwork-price {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-align: right;
+        }
+
+        /* B2B PARTNERSHIP */
+        .b2b-section {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background-color: #f8f7f4;
+        }
+
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .b2b-card {
+            padding: 20px;
+        }
+
+        .b2b-card h4 {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .b2b-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* CONTACT */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .contact-meta p {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .contact-meta strong {
+            color: var(--text-main);
+            font-weight: 400;
+            display: inline-block;
+            width: 100px;
+        }
+
+        .studio-info {
+            margin: 40px 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .studio-info h5 {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        /* MODAL WINDOW */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 40px;
+        }
+
+        .modal-content {
+            background: var(--bg);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 50px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 8%;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            text-transform: uppercase;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .philosophy-grid, .contact-layout, .b2b-grid, .modal-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            header {
+                padding: 25px 5%;
+            }
+            section {
+                padding: 100px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Sztella Bácsi</div>
+        <nav>
+            <ul>
+                <li><a href="#about">Filozófia</a></li>
+                <li><a href="#gallery">Kollekió</a></li>
+                <li><a href="#partners">Belsőépítészet</a></li>
+                <li><a href="#contact">Kapcsolat</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <span class="hero-sub">Exkluzív Képzőművészeti Katalógus</span>
+        <h1 class="hero-title">Karakteres formák, organikus szimbiózis a terekben.</h1>
+        <p class="hero-desc">Válogatott festmények, plasztikák és lámpa-szobrok reprezentatív magáningatlanokhoz és luxus enteriőrökhöz.</p>
+        <a href="#gallery" class="btn-minimal">Katalógus Megtekintése</a>
+    </section>
+
+    <!-- PHILOSOPHY / ABOUT -->
+    <section id="about">
+        <div class="philosophy-grid">
+            <div>
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80" alt="Sztella Bácsi Studio" style="width: 100%; height: auto; display: block; filter: grayscale(15%);">
+            </div>
+            <div class="philosophy-text">
+                <span class="section-tag">Művészeti Koncepció</span>
+                <h2 class="section-title" style="margin-bottom: 20px;">Elegancia & Organikus Anyagok</h2>
+                <p>Művészként célom olyan karakteres, organikus és modern alkotások megalkotása, amelyek tökéletes szimbiózisba lépnek a mai letisztult, elegáns enteriőrökkel.</p>
+                <div class="philosophy-quote">
+                    „A műalkotás nem csupán dísze a térnek, hanem annak lelke és karakterformáló stíluseleme.”
+                </div>
+                <p>Az agyag, vályog, nemesfák és az aranyfüst textúrái természetes harmóniát teremtenek a kortárs figurális ábrázolással.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="section-meta">
+            <span class="section-tag">Szelektált Portfólió</span>
+            <h2 class="section-title">Gyűjtemény & Katalógus</h2>
+        </div>
+
+        <div class="filters">
+            <button class="filter-link active" onclick="filterArt('all', this)">Mind</button>
+            <button class="filter-link" onclick="filterArt('festmeny', this)">Festmények</button>
+            <button class="filter-link" onclick="filterArt('szobor', this)">Szobrok & Plasztikák</button>
+            <button class="filter-link" onclick="filterArt('lampa', this)">Lámpa-szobrok</button>
+        </div>
+
+        <div class="gallery-grid">
+            
+            <!-- Item 1 -->
+            <div class="artwork-item" data-cat="festmeny" onclick="openModal('Organikus Ébredés', 'Modern Figurális / Szürrealizmus (2026)', '120 × 90 cm (Vakráma)', 'Vegyes technika, akril, aranyfüst, struktúrpaszta', '980 000 Ft + ÁFA', 'Ideális választás minimalista, monokróm vagy natúr tónusú modern nappalikba, office termekbe. Elhelyezés: legalább 220 cm széles kanapé felett. Térstílus: Japandi, Organic Modern, Modern Luxus.', 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80')">
+                <div class="artwork-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80" alt="Organikus Ébredés">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Organikus Ébredés</h3>
+                        <p class="artwork-sub">Vegyes technika, akril, aranyfüst · 120 × 90 cm</p>
+                    </div>
+                    <div class="artwork-price">980 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="artwork-item" data-cat="festmeny" onclick="openModal('Untitled', 'Hiperrealizmus / Monokróm (2021)', '40 × 50 cm', 'Akril & Olaj vásznon', '320 000 Ft + ÁFA', 'Fekete-fehér monokróm árnyalatok és mély anatómiai kifejezőerő. Kiválóan illeszkedik galériafal elrendezésben sötét tölgy, látszóbeton és mikrocement felületek mellé privát hálószobákba.', 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?auto=format&fit=crop&w=800&q=80')">
+                <div class="artwork-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1578321272176-b7bbc0679853?auto=format&fit=crop&w=800&q=80" alt="Untitled">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Untitled</h3>
+                        <p class="artwork-sub">Akril & Olaj vásznon · 40 × 50 cm</p>
+                    </div>
+                    <div class="artwork-price">320 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="artwork-item" data-cat="festmeny" onclick="openModal('Botanikai Portrék', 'Kortárs Figurális (2021-2026)', '60×80 cm & 40×50 cm', 'Olaj & Akril vásznon', '620 000 Ft & 290 000 Ft + ÁFA', 'A smaragdzöld és mélykék tónusok vibráló eleganciát visznek irodai tárgyalókba vagy reprezentatív előterekbe. Stílus: Botani-chic, Eclectic Elegance.', 'https://images.unsplash.com/photo-1582561811921-694e282a52a4?auto=format&fit=crop&w=800&q=80')">
+                <div class="artwork-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1582561811921-694e282a52a4?auto=format&fit=crop&w=800&q=80" alt="Botanikai Portrék">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Botanikai Portrék</h3>
+                        <p class="artwork-sub">Olaj & Akril vásznon · Sorozat</p>
+                    </div>
+                    <div class="artwork-price">620 000 Ft-tól<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="artwork-item" data-cat="szobor" onclick="openModal('Own Body', 'Organikus Szobrászat (2014)', '185 × 50 × 45 cm', 'Agyag, papír, rókabunda', '3 950 000 Ft + ÁFA', 'Háromdimenziós organikus szobor, amely nyitott terekben, megvilágított pódiumon vagy reprezentatív stúdiókban érvényesül a legjobban, ahol körbejárható.', 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=800&q=80')">
+                <div class="artwork-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&w=800&q=80" alt="Own Body">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Own Body</h3>
+                        <p class="artwork-sub">Agyag, papír, rókabunda · 185 cm</p>
+                    </div>
+                    <div class="artwork-price">3 950 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="artwork-item" data-cat="szobor" onclick="openModal('Networked II.', 'Konceptuális Plasztika (2015)', '140 × 80 × 75 cm', 'Vályog, föld, háló, fa', '4 500 000 Ft + ÁFA', 'Természetes alapanyagokból építkező térplasztika. Karakteres fókuszpontot képez tágas hallokban és reprezentatív ügyfélfogadó terekben.', 'https://images.unsplash.com/photo-1561839561-2ac38b318446?auto=format&fit=crop&w=800&q=80')">
+                <div class="artwork-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1561839561-2ac38b318446?auto=format&fit=crop&w=800&q=80" alt="Networked II.">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Networked II.</h3>
+                        <p class="artwork-sub">Vályog, föld, háló, fa · Installáció</p>
+                    </div>
+                    <div class="artwork-price">4 500 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="artwork-item" data-cat="lampa" onclick="openModal('Sculptural Lamp', 'Organikus Modern Minimalizmus (2026)', '140 cm magasság', 'Juharfa, integrált LED fénysáv', '970 000 Ft + ÁFA', 'Funkcionális művészeti alkotás és atmoszférikus világítás. A meleg juharfa és a finom fénysáv tökéletes egyensúlyt teremt modern és Japandi terekben.', 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80')">
+                <div class="artwork-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80" alt="Sculptural Lamp">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Sculptural Lamp</h3>
+                        <p class="artwork-sub">Juharfa, LED · 140 cm</p>
+                    </div>
+                    <div class="artwork-price">970 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- B2B PARTNERSHIP -->
+    <section id="partners" class="b2b-section">
+        <div class="section-meta">
+            <span class="section-tag">Szakmai Együttműködés</span>
+            <h2 class="section-title">Belsőépítészeknek & Tervezőknek</h2>
+        </div>
+
+        <div class="b2b-grid">
+            <div class="b2b-card">
+                <h4>15–20% Jutalék</h4>
+                <p>Közvetlen belsőépítészi kedvezmény vagy jutalék minden megvalósult projekt és vásárlás után[cite: 1].</p>
+            </div>
+            <div class="b2b-card">
+                <h4>Helyszíni Próba</h4>
+                <p>Ingyenes próbakihelyezést biztosítunk a választott műalkotással az ügyfél ingatlanában a végleges döntés előtt[cite: 1].</p>
+            </div>
+            <div class="b2b-card">
+                <h4>Egyedi Méret & Paletta</h4>
+                <p>Lehetőség van a festmények és szobrok színvilágát és méretét a megrendelő enteriőrjéhez igazítva elkészíteni[cite: 1].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact-layout">
+            <div>
+                <span class="section-tag">Kapcsolat</span>
+                <h2 class="section-title" style="margin-bottom: 30px;">Műterem & Információ</h2>
+                
+                <div class="contact-meta">
+                    <p><strong>Telefon</strong> <a href="tel:+36309977709">+36 30 997 7709</a></p>
+                    <p><strong>E-mail</strong> <a href="mailto:info@sztellabacsi.hu">info@sztellabacsi.hu</a></p>
+                    <p><strong>Web</strong> www.sztellabacsi.com</p>
+                    <p><strong>Instagram</strong> @sztellabacsi</p>
+                </div>
+
+                <div class="studio-info">
+                    <h5>Debrecen Festő Stúdió</h5>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Előzetes egyeztetés alapján látogatható[cite: 1].</p>
+                </div>
+
+                <div class="studio-info" style="margin-top:20px; padding-top:15px; border:none;">
+                    <h5>Debrecen-Józsa Szobrász Stúdió</h5>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Előzetes egyeztetés alapján látogatható[cite: 1].</p>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 300;">
+                    Minden alkotás mellé sorszámozott, kézzel aláírt eredetigazolást (Certificate of Authenticity) mellékelünk[cite: 1]. Országos szállítást és kihelyezést vállalunk[cite: 1].
+                </p>
+                <a href="mailto:info@sztellabacsi.hu" class="btn-minimal" style="text-align: center;">Kapcsolatfelvétel E-mailben</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL POPUP -->
+    <div class="modal" id="artModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div>
+                <img id="modalImg" src="" alt="" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <span class="section-tag" id="modalStyle"></span>
+                <h3 id="modalTitle" style="font-family: var(--font-title); font-size: 2.2rem; font-weight: 300; margin-bottom: 15px;"></h3>
+                <p id="modalPrice" style="font-size: 1.2rem; color: var(--accent-gold); margin-bottom: 20px;"></p>
+                
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;"><strong>Méret:</strong> <span id="modalSize"></span></p>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;"><strong>Technika / Anyag:</strong> <span id="modalMat"></span></p>
+                
+                <p id="modalDesc" style="font-size: 0.9rem; color: var(--text-main); line-height: 1.7; margin-bottom: 30px; border-top: 1px solid var(--border); padding-top: 15px;"></p>
+                
+                <a href="#contact" onclick="closeModal()" class="btn-minimal" style="text-align: center;">Érdeklődés erről a műről</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 Sztella Bácsi Art Portfolio · All Rights Reserved
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function filterArt(cat, btn) {
+            document.querySelectorAll('.filter-link').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.artwork-item').forEach(item => {
+                if(cat === 'all' || item.getAttribute('data-cat') === cat) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(title, style, size, mat, price, desc, img) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalStyle').innerText = style;
+            document.getElementById('modalSize').innerText = size;
+            document.getElementById('modalMat').innerText = mat;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('artModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('artModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('artModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
