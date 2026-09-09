@@ -13,6 +13,29 @@
         /* =======================================================
            1. ALAP ÉRTÉKEK – ASZTALI GÉP (EREDETI MEGJELENÉS)
            ======================================================= */
+        .lang-select {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+/* Arab RTL esetén igazítások */
+[dir="rtl"] {
+    text-align: right;
+}
+[dir="rtl"] .philosophy-quote {
+    border-left: none;
+    border-right: 1px solid var(--accent-gold);
+    padding-left: 0;
+    padding-right: 25px;
+}
         :root {
             --bg: #fcfbf9;
             --surface: #ffffff;
@@ -543,17 +566,33 @@
 <body>
 
     <!-- HEADER -->
-    <header>
-        <div class="logo">Sztella Bácsi</div>
-        <nav>
-            <ul>
-                <li><a href="#about">Filozófia</a></li>
-                <li><a href="#gallery">Kollekció</a></li>
-                <li><a href="#partners">Belsőépítészet</a></li>
-                <li><a href="#contact">Kapcsolat</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <div class="logo"><a href="index.html">Sztella Bácsi</a></div>
+    <nav>
+        <ul>
+            <li><a href="about.html" data-i18n="nav_about">Rólam</a></li>
+            <li><a href="#about" data-i18n="nav_philosophy">Filozófia</a></li>
+            <li><a href="#gallery" data-i18n="nav_gallery">Kollekció</a></li>
+            <li><a href="#partners" data-i18n="nav_partners">Belsőépítészet</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Kapcsolat</a></li>
+        </ul>
+    </nav>
+    <!-- Minimalista Nyelvválasztó -->
+    <div class="lang-selector-wrap">
+        <select id="langSelect" onchange="changeLanguage(this.value)" class="lang-select" aria-label="Nyelvválasztás">
+            <option value="hu">HU</option>
+            <option value="en">EN</option>
+            <option value="de">DE</option>
+            <option value="fr">FR</option>
+            <option value="it">IT</option>
+            <option value="es">ES</option>
+            <option value="ar">العربية (AR)</option>
+            <option value="ja">日本語 (JA)</option>
+            <option value="ko">한국어 (KO)</option>
+            <option value="zh">中文 (ZH)</option>
+        </select>
+    </div>
+</header>
 
     <!-- HERO -->
     <section class="hero">
@@ -804,6 +843,6 @@
                 closeModal();
             }
         }
-    </script>
+    <script src="translations.js"></script>
 </body>
 </html>
