@@ -10,7 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     
     <style>
-        /* MINIMALIST LUXURY SYSTEM */
+        /* =======================================================
+           1. ALAP ÉRTÉKEK – ASZTALI GÉP (EREDETI MEGJELENÉS)
+           ======================================================= */
         :root {
             --bg: #fcfbf9;
             --surface: #ffffff;
@@ -41,6 +43,7 @@
             line-height: 1.8;
             letter-spacing: 0.3px;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Megelőzi a véletlen vízszintes görgetést */
         }
 
         a {
@@ -61,6 +64,7 @@
             z-index: 100;
             background: rgba(252, 251, 249, 0.85);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: all 0.5s var(--ease);
         }
 
@@ -107,6 +111,7 @@
             text-transform: uppercase;
             color: var(--accent-gold);
             margin-bottom: 25px;
+            display: block;
         }
 
         .hero-title {
@@ -138,6 +143,7 @@
             transition: all 0.4s var(--ease);
             background: transparent;
             cursor: pointer;
+            text-align: center;
         }
 
         .btn-minimal:hover {
@@ -202,6 +208,7 @@
             justify-content: center;
             gap: 35px;
             margin-bottom: 70px;
+            flex-wrap: wrap;
         }
 
         .filter-link {
@@ -278,6 +285,7 @@
             letter-spacing: 1px;
             color: var(--text-main);
             text-align: right;
+            white-space: nowrap;
         }
 
         /* B2B PARTNERSHIP */
@@ -321,6 +329,7 @@
             color: var(--text-muted);
             margin-bottom: 12px;
             font-size: 0.9rem;
+            word-break: break-word;
         }
 
         .contact-meta strong {
@@ -353,6 +362,7 @@
             height: 100%;
             background: rgba(17, 17, 17, 0.85);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -366,6 +376,7 @@
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
@@ -382,6 +393,7 @@
             color: var(--text-muted);
             background: none;
             border: none;
+            z-index: 10;
         }
 
         /* FOOTER */
@@ -395,17 +407,135 @@
             text-transform: uppercase;
         }
 
-        /* RESPONSIVE */
+
+        /* =======================================================
+           2. RESPONZÍV FINOMHANGOLÁS KÖZEPES KIJELZŐKRE (<= 900px)
+           ======================================================= */
         @media (max-width: 900px) {
-            .philosophy-grid, .contact-layout, .b2b-grid, .modal-content {
+            .philosophy-grid, 
+            .contact-layout, 
+            .b2b-grid, 
+            .modal-content {
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
             header {
-                padding: 25px 5%;
+                padding: 20px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             section {
                 padding: 100px 5%;
+            }
+            .hero {
+                padding-top: 150px;
+            }
+            .modal-content {
+                padding: 35px 25px;
+            }
+        }
+
+
+        /* =======================================================
+           3. KIFEJEZETTEN KIS KÉPERNYŐK (IPHONE SE, <= 480px)
+              Itt aktiválódnak az iPhone SE-re szabott javítások:
+           ======================================================= */
+        @media (max-width: 480px) {
+            header {
+                padding: 16px 4%;
+                gap: 10px;
+            }
+            .logo {
+                font-size: 1.25rem;
+                letter-spacing: 3px;
+            }
+            nav ul {
+                gap: 12px;
+            }
+            nav a {
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+            }
+            
+            /* HERO */
+            .hero {
+                padding: 130px 5% 60px;
+            }
+            .hero-title {
+                font-size: 2.1rem;
+                letter-spacing: 0.5px;
+            }
+            .hero-desc {
+                font-size: 0.88rem;
+                margin-bottom: 35px;
+            }
+            .btn-minimal {
+                width: 100%;
+                padding: 15px 20px;
+            }
+
+            /* SZEKCIÓK */
+            section {
+                padding: 80px 5%;
+            }
+            .section-meta {
+                margin-bottom: 50px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .philosophy-quote {
+                font-size: 1.4rem;
+                margin: 25px 0;
+                padding-left: 15px;
+            }
+
+            /* SZŰRŐK & GALÉRIA (Megszünteti a szétesést mobilon) */
+            .filters {
+                gap: 10px 18px;
+                margin-bottom: 40px;
+            }
+            .filter-link {
+                font-size: 0.68rem;
+                letter-spacing: 2px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr; /* 1 db kényelmes, elegáns oszlop */
+                gap: 40px;
+            }
+            .artwork-details {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .artwork-price {
+                text-align: left;
+            }
+
+            /* KAPCSOLAT */
+            .contact-meta strong {
+                width: 85px;
+            }
+
+            /* MODÁLIS ABLAK (Kényelmes, nem csúszik le az X) */
+            .modal {
+                padding: 10px;
+            }
+            .modal-content {
+                padding: 40px 18px 25px;
+                gap: 20px;
+            }
+            .close-modal {
+                top: 10px;
+                right: 15px;
+                font-size: 1.8rem;
+            }
+            #modalTitle {
+                font-size: 1.7rem;
             }
         }
     </style>
@@ -418,7 +548,7 @@
         <nav>
             <ul>
                 <li><a href="#about">Filozófia</a></li>
-                <li><a href="#gallery">Kollekió</a></li>
+                <li><a href="#gallery">Kollekció</a></li>
                 <li><a href="#partners">Belsőépítészet</a></li>
                 <li><a href="#contact">Kapcsolat</a></li>
             </ul>
@@ -466,7 +596,6 @@
         </div>
 
         <div class="gallery-grid">
-            
             <!-- Item 1 -->
             <div class="artwork-item" data-cat="festmeny" onclick="openModal('Organikus Ébredés', 'Modern Figurális / Szürrealizmus (2026)', '120 × 90 cm (Vakráma)', 'Vegyes technika, akril, aranyfüst, struktúrpaszta', '980 000 Ft + ÁFA', 'Ideális választás minimalista, monokróm vagy natúr tónusú modern nappalikba, office termekbe. Elhelyezés: legalább 220 cm széles kanapé felett. Térstílus: Japandi, Organic Modern, Modern Luxus.', 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80')">
                 <div class="artwork-img-wrapper">
@@ -550,7 +679,6 @@
                     <div class="artwork-price">970 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -564,15 +692,15 @@
         <div class="b2b-grid">
             <div class="b2b-card">
                 <h4>15–20% Jutalék</h4>
-                <p>Közvetlen belsőépítészi kedvezmény vagy jutalék minden megvalósult projekt és vásárlás után[cite: 1].</p>
+                <p>Közvetlen belsőépítészi kedvezmény vagy jutalék minden megvalósult projekt és vásárlás után.</p>
             </div>
             <div class="b2b-card">
                 <h4>Helyszíni Próba</h4>
-                <p>Ingyenes próbakihelyezést biztosítunk a választott műalkotással az ügyfél ingatlanában a végleges döntés előtt[cite: 1].</p>
+                <p>Ingyenes próbakihelyezést biztosítunk a választott műalkotással az ügyfél ingatlanában a végleges döntés előtt.</p>
             </div>
             <div class="b2b-card">
                 <h4>Egyedi Méret & Paletta</h4>
-                <p>Lehetőség van a festmények és szobrok színvilágát és méretét a megrendelő enteriőrjéhez igazítva elkészíteni[cite: 1].</p>
+                <p>Lehetőség van a festmények és szobrok színvilágát és méretét a megrendelő enteriőrjéhez igazítva elkészíteni.</p>
             </div>
         </div>
     </section>
@@ -593,18 +721,18 @@
 
                 <div class="studio-info">
                     <h5>Debrecen Festő Stúdió</h5>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Előzetes egyeztetés alapján látogatható[cite: 1].</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Előzetes egyeztetés alapján látogatható.</p>
                 </div>
 
                 <div class="studio-info" style="margin-top:20px; padding-top:15px; border:none;">
                     <h5>Debrecen-Józsa Szobrász Stúdió</h5>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Előzetes egyeztetés alapján látogatható[cite: 1].</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Előzetes egyeztetés alapján látogatható.</p>
                 </div>
             </div>
 
             <div style="display: flex; flex-direction: column; justify-content: center;">
                 <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 300;">
-                    Minden alkotás mellé sorszámozott, kézzel aláírt eredetigazolást (Certificate of Authenticity) mellékelünk[cite: 1]. Országos szállítást és kihelyezést vállalunk[cite: 1].
+                    Minden alkotás mellé sorszámozott, kézzel aláírt eredetigazolást (Certificate of Authenticity) mellékelünk. Országos szállítást és kihelyezést vállalunk.
                 </p>
                 <a href="mailto:info@sztellabacsi.hu" class="btn-minimal" style="text-align: center;">Kapcsolatfelvétel E-mailben</a>
             </div>
@@ -662,10 +790,12 @@
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('modalImg').src = img;
             document.getElementById('artModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Háttér görgetés letiltása modálnál
         }
 
         function closeModal() {
             document.getElementById('artModal').style.display = 'none';
+            document.body.style.overflow = ''; // Visszaállítja a görgetést
         }
 
         window.onclick = function(event) {
