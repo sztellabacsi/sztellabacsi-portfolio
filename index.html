@@ -10,32 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     
     <style>
-        /* =======================================================
-           1. ALAP ÉRTÉKEK – ASZTALI GÉP (EREDETI MEGJELENÉS)
-           ======================================================= */
-        .lang-select {
-    background: transparent;
-    border: 1px solid var(--border);
-    padding: 6px 10px;
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    letter-spacing: 1px;
-    color: var(--text-main);
-    border-radius: 0;
-    outline: none;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-/* Arab RTL esetén igazítások */
-[dir="rtl"] {
-    text-align: right;
-}
-[dir="rtl"] .philosophy-quote {
-    border-left: none;
-    border-right: 1px solid var(--accent-gold);
-    padding-left: 0;
-    padding-right: 25px;
-}
         :root {
             --bg: #fcfbf9;
             --surface: #ffffff;
@@ -66,7 +40,7 @@
             line-height: 1.8;
             letter-spacing: 0.3px;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; /* Megelőzi a véletlen vízszintes görgetést */
+            overflow-x: hidden;
         }
 
         a {
@@ -80,21 +54,28 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 40px 8%;
+            padding: 35px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(252, 251, 249, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.5s var(--ease);
+            background: rgba(252, 251, 249, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(236, 232, 225, 0.7);
+            transition: all 0.4s var(--ease);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .logo {
             font-family: var(--font-title);
-            font-size: 1.6rem;
-            letter-spacing: 6px;
+            font-size: 1.55rem;
+            letter-spacing: 5px;
             font-weight: 300;
             text-transform: uppercase;
         }
@@ -102,12 +83,12 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 50px;
+            gap: 36px;
         }
 
         nav a {
             font-size: 0.75rem;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             color: var(--text-muted);
             transition: color 0.4s var(--ease);
@@ -115,6 +96,69 @@
 
         nav a:hover {
             color: var(--text-main);
+        }
+
+        /* DISZKRÉT, FINOM NYELVVÁLASZTÓ GOMB */
+        .lang-control {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
+            background: transparent;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 5px 8px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lang-trigger:hover {
+            color: var(--text-main);
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: none;
+            flex-direction: column;
+            min-width: 140px;
+            z-index: 200;
+            padding: 8px 0;
+        }
+
+        .lang-menu.open {
+            display: flex;
+        }
+
+        .lang-opt {
+            background: transparent;
+            border: none;
+            padding: 7px 18px;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            text-align: left;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lang-opt:hover, .lang-opt.active {
+            color: var(--text-main);
+            background: #faf8f5;
         }
 
         /* HERO SECTION */
@@ -139,9 +183,9 @@
 
         .hero-title {
             font-family: var(--font-title);
-            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            font-size: clamp(2.3rem, 6vw, 4.6rem);
             font-weight: 300;
-            line-height: 1.15;
+            line-height: 1.18;
             max-width: 900px;
             margin-bottom: 30px;
             letter-spacing: 1px;
@@ -176,12 +220,12 @@
 
         /* SECTIONS */
         section {
-            padding: 160px 8%;
+            padding: 150px 8%;
         }
 
         .section-meta {
             text-align: center;
-            margin-bottom: 90px;
+            margin-bottom: 80px;
         }
 
         .section-tag {
@@ -195,32 +239,32 @@
 
         .section-title {
             font-family: var(--font-title);
-            font-size: 2.8rem;
+            font-size: 2.7rem;
             font-weight: 300;
             letter-spacing: 1px;
         }
 
-        /* PHILOSOPHY / ABOUT */
+        /* PHILOSOPHY */
         .philosophy-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 90px;
             align-items: center;
         }
 
         .philosophy-text p {
             color: var(--text-muted);
             font-size: 1rem;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
 
         .philosophy-quote {
             font-family: var(--font-title);
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-style: italic;
-            line-height: 1.4;
+            line-height: 1.45;
             color: var(--text-main);
-            margin: 40px 0;
+            margin: 35px 0;
             padding-left: 25px;
             border-left: 1px solid var(--accent-gold);
         }
@@ -229,8 +273,8 @@
         .filters {
             display: flex;
             justify-content: center;
-            gap: 35px;
-            margin-bottom: 70px;
+            gap: 30px;
+            margin-bottom: 60px;
             flex-wrap: wrap;
         }
 
@@ -245,7 +289,7 @@
             cursor: pointer;
             padding-bottom: 8px;
             border-bottom: 1px solid transparent;
-            transition: all 0.4s var(--ease);
+            transition: all 0.3s var(--ease);
         }
 
         .filter-link.active, .filter-link:hover {
@@ -255,13 +299,13 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 60px 40px;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 50px 35px;
         }
 
         .artwork-item {
             cursor: pointer;
-            transition: transform 0.6s var(--ease);
+            transition: transform 0.4s var(--ease);
         }
 
         .artwork-img-wrapper {
@@ -269,7 +313,7 @@
             aspect-ratio: 3/4;
             overflow: hidden;
             background-color: #f4f2ed;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .artwork-img-wrapper img {
@@ -293,7 +337,7 @@
 
         .artwork-title {
             font-family: var(--font-title);
-            font-size: 1.6rem;
+            font-size: 1.55rem;
             font-weight: 300;
             margin-bottom: 4px;
         }
@@ -321,16 +365,12 @@
         .b2b-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-        }
-
-        .b2b-card {
-            padding: 20px;
+            gap: 45px;
         }
 
         .b2b-card h4 {
             font-family: var(--font-title);
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             font-weight: 400;
             margin-bottom: 15px;
         }
@@ -345,7 +385,7 @@
         .contact-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 80px;
         }
 
         .contact-meta p {
@@ -359,12 +399,12 @@
             color: var(--text-main);
             font-weight: 400;
             display: inline-block;
-            width: 100px;
+            width: 95px;
         }
 
         .studio-info {
-            margin: 40px 0;
-            padding-top: 30px;
+            margin: 35px 0;
+            padding-top: 25px;
             border-top: 1px solid var(--border);
         }
 
@@ -373,7 +413,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--accent-gold);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         /* MODAL WINDOW */
@@ -390,28 +430,28 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 40px;
+            padding: 20px;
         }
 
         .modal-content {
             background: var(--bg);
-            max-width: 900px;
+            max-width: 850px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            padding: 50px;
+            gap: 40px;
+            padding: 45px;
             position: relative;
         }
 
         .close-modal {
             position: absolute;
-            top: 25px;
-            right: 30px;
-            font-size: 1.5rem;
+            top: 20px;
+            right: 25px;
+            font-size: 1.6rem;
             cursor: pointer;
             color: var(--text-muted);
             background: none;
@@ -421,144 +461,91 @@
 
         /* FOOTER */
         footer {
-            padding: 60px 8%;
+            padding: 50px 8%;
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             letter-spacing: 2px;
             color: var(--text-muted);
             border-top: 1px solid var(--border);
             text-transform: uppercase;
         }
 
+        /* RTL (Arab) támogatás */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .philosophy-quote {
+            border-left: none;
+            border-right: 1px solid var(--accent-gold);
+            padding-left: 0;
+            padding-right: 25px;
+        }
+        [dir="rtl"] .lang-menu {
+            right: auto;
+            left: 0;
+        }
+        [dir="rtl"] .lang-opt {
+            text-align: right;
+        }
 
-        /* =======================================================
-           2. RESPONZÍV FINOMHANGOLÁS KÖZEPES KIJELZŐKRE (<= 900px)
-           ======================================================= */
+        /* RESPONSIVE FINOMÍTÁSOK */
         @media (max-width: 900px) {
-            .philosophy-grid, 
-            .contact-layout, 
-            .b2b-grid, 
-            .modal-content {
+            .philosophy-grid, .contact-layout, .b2b-grid, .modal-content {
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 45px;
             }
             header {
-                padding: 20px 5%;
-                flex-direction: column;
-                gap: 15px;
+                padding: 18px 5%;
+                flex-wrap: wrap;
+            }
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
             }
             nav ul {
-                gap: 20px;
-                flex-wrap: wrap;
+                gap: 16px;
                 justify-content: center;
+                overflow-x: auto;
+                scrollbar-width: none;
+                padding-bottom: 4px;
             }
+            nav ul::-webkit-scrollbar { display: none; }
             section {
-                padding: 100px 5%;
-            }
-            .hero {
-                padding-top: 150px;
-            }
-            .modal-content {
-                padding: 35px 25px;
+                padding: 90px 5%;
             }
         }
 
-
-        /* =======================================================
-           3. KIFEJEZETTEN KIS KÉPERNYŐK (IPHONE SE, <= 480px)
-              Itt aktiválódnak az iPhone SE-re szabott javítások:
-           ======================================================= */
+        /* IPHONE SE & KIS KIJELZŐK */
         @media (max-width: 480px) {
-            header {
-                padding: 16px 4%;
-                gap: 10px;
-            }
             .logo {
-                font-size: 1.25rem;
+                font-size: 1.2rem;
                 letter-spacing: 3px;
-            }
-            nav ul {
-                gap: 12px;
             }
             nav a {
                 font-size: 0.65rem;
                 letter-spacing: 1.5px;
             }
-            
-            /* HERO */
-            .hero {
-                padding: 130px 5% 60px;
-            }
             .hero-title {
                 font-size: 2.1rem;
-                letter-spacing: 0.5px;
-            }
-            .hero-desc {
-                font-size: 0.88rem;
-                margin-bottom: 35px;
-            }
-            .btn-minimal {
-                width: 100%;
-                padding: 15px 20px;
-            }
-
-            /* SZEKCIÓK */
-            section {
-                padding: 80px 5%;
-            }
-            .section-meta {
-                margin-bottom: 50px;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .philosophy-quote {
-                font-size: 1.4rem;
-                margin: 25px 0;
-                padding-left: 15px;
-            }
-
-            /* SZŰRŐK & GALÉRIA (Megszünteti a szétesést mobilon) */
-            .filters {
-                gap: 10px 18px;
-                margin-bottom: 40px;
-            }
-            .filter-link {
-                font-size: 0.68rem;
-                letter-spacing: 2px;
             }
             .gallery-grid {
-                grid-template-columns: 1fr; /* 1 db kényelmes, elegáns oszlop */
-                gap: 40px;
+                grid-template-columns: 1fr;
+                gap: 35px;
             }
             .artwork-details {
                 flex-direction: column;
-                gap: 6px;
+                gap: 5px;
             }
             .artwork-price {
                 text-align: left;
             }
-
-            /* KAPCSOLAT */
-            .contact-meta strong {
-                width: 85px;
-            }
-
-            /* MODÁLIS ABLAK (Kényelmes, nem csúszik le az X) */
-            .modal {
-                padding: 10px;
+            .btn-minimal {
+                width: 100%;
             }
             .modal-content {
-                padding: 40px 18px 25px;
+                padding: 35px 18px;
                 gap: 20px;
-            }
-            .close-modal {
-                top: 10px;
-                right: 15px;
-                font-size: 1.8rem;
-            }
-            #modalTitle {
-                font-size: 1.7rem;
             }
         }
     </style>
@@ -566,40 +553,45 @@
 <body>
 
     <!-- HEADER -->
-<header>
-    <div class="logo"><a href="index.html">Sztella Bácsi</a></div>
-    <nav>
-        <ul>
-            <li><a href="about.html" data-i18n="nav_about">Rólam</a></li>
-            <li><a href="#about" data-i18n="nav_philosophy">Filozófia</a></li>
-            <li><a href="#gallery" data-i18n="nav_gallery">Kollekció</a></li>
-            <li><a href="#partners" data-i18n="nav_partners">Belsőépítészet</a></li>
-            <li><a href="#contact" data-i18n="nav_contact">Kapcsolat</a></li>
-        </ul>
-    </nav>
-    <!-- Minimalista Nyelvválasztó -->
-    <div class="lang-selector-wrap">
-        <select id="langSelect" onchange="changeLanguage(this.value)" class="lang-select" aria-label="Nyelvválasztás">
-            <option value="hu">HU</option>
-            <option value="en">EN</option>
-            <option value="de">DE</option>
-            <option value="fr">FR</option>
-            <option value="it">IT</option>
-            <option value="es">ES</option>
-            <option value="ar">العربية (AR)</option>
-            <option value="ja">日本語 (JA)</option>
-            <option value="ko">한국어 (KO)</option>
-            <option value="zh">中文 (ZH)</option>
-        </select>
-    </div>
-</header>
+    <header>
+        <div class="logo"><a href="index.html">Sztella Bácsi</a></div>
+        
+        <!-- DISZKRÉT NYELVVÁLASZTÓ GOMB A FEJLÉC SZÉLÉN -->
+        <div class="lang-control">
+            <button id="currentLangBtn" class="lang-trigger" onclick="toggleLangDropdown(event)" aria-label="Nyelv választása">
+                HU <span style="font-size: 0.6rem; opacity: 0.7;">▾</span>
+            </button>
+            <div id="langDropdown" class="lang-menu">
+                <button class="lang-opt active" data-lang="hu" onclick="setSiteLanguage('hu')">Magyar (HU)</button>
+                <button class="lang-opt" data-lang="en" onclick="setSiteLanguage('en')">English (EN)</button>
+                <button class="lang-opt" data-lang="de" onclick="setSiteLanguage('de')">Deutsch (DE)</button>
+                <button class="lang-opt" data-lang="fr" onclick="setSiteLanguage('fr')">Français (FR)</button>
+                <button class="lang-opt" data-lang="it" onclick="setSiteLanguage('it')">Italiano (IT)</button>
+                <button class="lang-opt" data-lang="es" onclick="setSiteLanguage('es')">Español (ES)</button>
+                <button class="lang-opt" data-lang="ar" onclick="setSiteLanguage('ar')">العربية (AR)</button>
+                <button class="lang-opt" data-lang="ja" onclick="setSiteLanguage('ja')">日本語 (JA)</button>
+                <button class="lang-opt" data-lang="ko" onclick="setSiteLanguage('ko')">한국어 (KO)</button>
+                <button class="lang-opt" data-lang="zh" onclick="setSiteLanguage('zh')">中文 (ZH)</button>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="about.html" data-i18n="nav_about">Rólam</a></li>
+                <li><a href="#about" data-i18n="nav_philosophy">Filozófia</a></li>
+                <li><a href="#gallery" data-i18n="nav_gallery">Kollekció</a></li>
+                <li><a href="#partners" data-i18n="nav_partners">Belsőépítészet</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Kapcsolat</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- HERO -->
     <section class="hero">
-        <span class="hero-sub">Exkluzív Képzőművészeti Katalógus</span>
-        <h1 class="hero-title">Karakteres formák, organikus szimbiózis a terekben.</h1>
-        <p class="hero-desc">Válogatott festmények, plasztikák és lámpa-szobrok reprezentatív magáningatlanokhoz és luxus enteriőrökhöz.</p>
-        <a href="#gallery" class="btn-minimal">Katalógus Megtekintése</a>
+        <span class="hero-sub" data-i18n="hero_sub">Exkluzív Képzőművészeti Katalógus</span>
+        <h1 class="hero-title" data-i18n="hero_title">Karakteres formák, organikus szimbiózis a terekben.</h1>
+        <p class="hero-desc" data-i18n="hero_desc">Válogatott festmények, plasztikák és lámpa-szobrok reprezentatív magáningatlanokhoz és luxus enteriőrökhöz.</p>
+        <a href="#gallery" class="btn-minimal" data-i18n="hero_btn">Katalógus Megtekintése</a>
     </section>
 
     <!-- PHILOSOPHY / ABOUT -->
@@ -609,13 +601,13 @@
                 <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1000&q=80" alt="Sztella Bácsi Studio" style="width: 100%; height: auto; display: block; filter: grayscale(15%);">
             </div>
             <div class="philosophy-text">
-                <span class="section-tag">Művészeti Koncepció</span>
-                <h2 class="section-title" style="margin-bottom: 20px;">Elegancia & Organikus Anyagok</h2>
-                <p>Művészként célom olyan karakteres, organikus és modern alkotások megalkotása, amelyek tökéletes szimbiózisba lépnek a mai letisztult, elegáns enteriőrökkel.</p>
-                <div class="philosophy-quote">
+                <span class="section-tag" data-i18n="about_tag">Művészeti Koncepció</span>
+                <h2 class="section-title" style="margin-bottom: 20px;" data-i18n="about_heading">Elegancia & Organikus Anyagok</h2>
+                <p data-i18n="about_p1">Művészként célom olyan karakteres, organikus és modern alkotások megalkotása, amelyek tökéletes szimbiózisba lépnek a mai letisztult, elegáns enteriőrökkel.</p>
+                <div class="philosophy-quote" data-i18n="about_quote">
                     „A műalkotás nem csupán dísze a térnek, hanem annak lelke és karakterformáló stíluseleme.”
                 </div>
-                <p>Az agyag, vályog, nemesfák és az aranyfüst textúrái természetes harmóniát teremtenek a kortárs figurális ábrázolással.</p>
+                <p data-i18n="about_p2">Az agyag, vályog, nemesfák és az aranyfüst textúrái természetes harmóniát teremtenek a kortárs figurális ábrázolással.</p>
             </div>
         </div>
     </section>
@@ -623,15 +615,15 @@
     <!-- GALLERY -->
     <section id="gallery">
         <div class="section-meta">
-            <span class="section-tag">Szelektált Portfólió</span>
-            <h2 class="section-title">Gyűjtemény & Katalógus</h2>
+            <span class="section-tag" data-i18n="gallery_tag">Szelektált Portfólió</span>
+            <h2 class="section-title" data-i18n="gallery_title">Gyűjtemény & Katalógus</h2>
         </div>
 
         <div class="filters">
-            <button class="filter-link active" onclick="filterArt('all', this)">Mind</button>
-            <button class="filter-link" onclick="filterArt('festmeny', this)">Festmények</button>
-            <button class="filter-link" onclick="filterArt('szobor', this)">Szobrok & Plasztikák</button>
-            <button class="filter-link" onclick="filterArt('lampa', this)">Lámpa-szobrok</button>
+            <button class="filter-link active" onclick="filterArt('all', this)" data-i18n="filter_all">Mind</button>
+            <button class="filter-link" onclick="filterArt('festmeny', this)" data-i18n="filter_paintings">Festmények</button>
+            <button class="filter-link" onclick="filterArt('szobor', this)" data-i18n="filter_sculptures">Szobrok & Plasztikák</button>
+            <button class="filter-link" onclick="filterArt('lampa', this)" data-i18n="filter_lamps">Lámpa-szobrok</button>
         </div>
 
         <div class="gallery-grid">
@@ -724,22 +716,22 @@
     <!-- B2B PARTNERSHIP -->
     <section id="partners" class="b2b-section">
         <div class="section-meta">
-            <span class="section-tag">Szakmai Együttműködés</span>
-            <h2 class="section-title">Belsőépítészeknek & Tervezőknek</h2>
+            <span class="section-tag" data-i18n="b2b_tag">Szakmai Együttműködés</span>
+            <h2 class="section-title" data-i18n="b2b_title">Belsőépítészeknek & Tervezőknek</h2>
         </div>
 
         <div class="b2b-grid">
             <div class="b2b-card">
-                <h4>15–20% Jutalék</h4>
-                <p>Közvetlen belsőépítészi kedvezmény vagy jutalék minden megvalósult projekt és vásárlás után.</p>
+                <h4 data-i18n="b2b_card1_title">15–20% Jutalék</h4>
+                <p data-i18n="b2b_card1_desc">Közvetlen belsőépítészi kedvezmény vagy jutalék minden megvalósult projekt és vásárlás után.</p>
             </div>
             <div class="b2b-card">
-                <h4>Helyszíni Próba</h4>
-                <p>Ingyenes próbakihelyezést biztosítunk a választott műalkotással az ügyfél ingatlanában a végleges döntés előtt.</p>
+                <h4 data-i18n="b2b_card2_title">Helyszíni Próba</h4>
+                <p data-i18n="b2b_card2_desc">Ingyenes próbakihelyezést biztosítunk a választott műalkotással az ügyfél ingatlanában a végleges döntés előtt.</p>
             </div>
             <div class="b2b-card">
-                <h4>Egyedi Méret & Paletta</h4>
-                <p>Lehetőség van a festmények és szobrok színvilágát és méretét a megrendelő enteriőrjéhez igazítva elkészíteni.</p>
+                <h4 data-i18n="b2b_card3_title">Egyedi Méret & Paletta</h4>
+                <p data-i18n="b2b_card3_desc">Lehetőség van a festmények és szobrok színvilágát és méretét a megrendelő enteriőrjéhez igazítva elkészíteni.</p>
             </div>
         </div>
     </section>
@@ -748,8 +740,8 @@
     <section id="contact">
         <div class="contact-layout">
             <div>
-                <span class="section-tag">Kapcsolat</span>
-                <h2 class="section-title" style="margin-bottom: 30px;">Műterem & Információ</h2>
+                <span class="section-tag" data-i18n="contact_tag">Kapcsolat</span>
+                <h2 class="section-title" style="margin-bottom: 30px;" data-i18n="contact_title">Műterem & Információ</h2>
                 
                 <div class="contact-meta">
                     <p><strong>Telefon</strong> <a href="tel:+36309977709">+36 30 997 7709</a></p>
@@ -770,10 +762,10 @@
             </div>
 
             <div style="display: flex; flex-direction: column; justify-content: center;">
-                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 300;">
+                <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 300;" data-i18n="contact_guarantee">
                     Minden alkotás mellé sorszámozott, kézzel aláírt eredetigazolást (Certificate of Authenticity) mellékelünk. Országos szállítást és kihelyezést vállalunk.
                 </p>
-                <a href="mailto:info@sztellabacsi.hu" class="btn-minimal" style="text-align: center;">Kapcsolatfelvétel E-mailben</a>
+                <a href="mailto:info@sztellabacsi.hu" class="btn-minimal" style="text-align: center;" data-i18n="contact_btn">Kapcsolatfelvétel E-mailben</a>
             </div>
         </div>
     </section>
@@ -802,10 +794,11 @@
 
     <!-- FOOTER -->
     <footer>
-        &copy; 2026 Sztella Bácsi Art Portfolio · All Rights Reserved
+        <span data-i18n="footer_copy">&copy; 2026 Sztella Bácsi Art Portfolio · All Rights Reserved</span>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT LOGIKA -->
+    <script src="translations.js"></script>
     <script>
         function filterArt(cat, btn) {
             document.querySelectorAll('.filter-link').forEach(b => b.classList.remove('active'));
@@ -829,12 +822,12 @@
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('modalImg').src = img;
             document.getElementById('artModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Háttér görgetés letiltása modálnál
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             document.getElementById('artModal').style.display = 'none';
-            document.body.style.overflow = ''; // Visszaállítja a görgetést
+            document.body.style.overflow = '';
         }
 
         window.onclick = function(event) {
@@ -843,6 +836,6 @@
                 closeModal();
             }
         }
-    <script src="translations.js"></script>
+    </script>
 </body>
 </html>
