@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     
-    /* TOVÁBBI KIÁLLÍTÁSOK LENYITÓ */
+    /* FINOM ARCHÍVUM LENYITÓ ÉS KOMPAKT LISTA */
         .cv-archive {
             margin-top: 35px;
             border-top: 1px solid var(--border);
@@ -26,8 +26,8 @@
             list-style: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            transition: color 0.3s ease;
+            gap: 6px;
+            transition: color 0.3s var(--ease);
             outline: none;
             user-select: none;
         }
@@ -40,21 +40,62 @@
             color: var(--text-main);
         }
 
+        /* Ugyanolyan finom, 0.6rem méretű nyíl, mint a fejlécben */
         .cv-archive summary .icon {
             font-size: 0.6rem;
-            color: var(--accent-gold);
-            transition: transform 0.4s ease;
+            opacity: 0.7;
+            transition: transform 0.3s var(--ease);
             display: inline-block;
         }
 
-        /* Amikor lenyílik, a kis arany nyíl felfelé fordul */
         .cv-archive[open] summary .icon {
             transform: rotate(180deg);
         }
 
-        /* Lenyíló elemek távolsága és finom megjelenése */
+        /* Kompakt, csoportosított lista */
         .cv-archive-body {
-            margin-top: 25px;
+            margin-top: 30px;
+        }
+
+        .archive-group {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 25px;
+            margin-bottom: 22px; /* Évszám-csoportok közötti távolság */
+        }
+
+        .archive-year {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        .archive-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .archive-items li {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 5px; /* Sorok közötti minimális távolság */
+        }
+
+        .archive-items li strong {
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 480px) {
+            .archive-group {
+                grid-template-columns: 1fr;
+                gap: 4px;
+                margin-bottom: 18px;
+            }
         }<style>
         :root {
             --bg: #fcfbf9;
