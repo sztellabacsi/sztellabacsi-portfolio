@@ -9,7 +9,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
     
-    <style>
+    /* TOVÁBBI KIÁLLÍTÁSOK LENYITÓ */
+        .cv-archive {
+            margin-top: 35px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .cv-archive summary {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            cursor: pointer;
+            list-style: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+            outline: none;
+            user-select: none;
+        }
+
+        .cv-archive summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .cv-archive summary:hover {
+            color: var(--text-main);
+        }
+
+        .cv-archive summary .icon {
+            font-size: 0.6rem;
+            color: var(--accent-gold);
+            transition: transform 0.4s ease;
+            display: inline-block;
+        }
+
+        /* Amikor lenyílik, a kis arany nyíl felfelé fordul */
+        .cv-archive[open] summary .icon {
+            transform: rotate(180deg);
+        }
+
+        /* Lenyíló elemek távolsága és finom megjelenése */
+        .cv-archive-body {
+            margin-top: 25px;
+        }<style>
         :root {
             --bg: #fcfbf9;
             --surface: #ffffff;
@@ -349,6 +395,42 @@
                     <p>Nemzetközi Kortárs Művészeti Vásár, Bécs</p>
                 </div>
             </div>
+            <!-- TOVÁBBI KIÁLLÍTÁSOK LENYÍLÓ PANEL -->
+            <details class="cv-archive">
+                <summary>
+                    <span>További korábbi kiállítások</span>
+                    <span class="icon">▼</span>
+                </summary>
+
+                <div class="cv-archive-body">
+                    <!-- 1. extra kiállítás -->
+                    <div class="cv-item">
+                        <span class="cv-year">2019</span>
+                        <div class="cv-detail">
+                            <strong>Térrétegek</strong>
+                            <p>Csoportos tárlat · B32 Galéria, Budapest</p>
+                        </div>
+                    </div>
+
+                    <!-- 2. extra kiállítás -->
+                    <div class="cv-item">
+                        <span class="cv-year">2017</span>
+                        <div class="cv-detail">
+                            <strong>Kísérleti Struktúrák</strong>
+                            <p>Fiatal Képzőművészek Stúdiója, Miskolc</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. extra kiállítás -->
+                    <div class="cv-item">
+                        <span class="cv-year">2016</span>
+                        <div class="cv-detail">
+                            <strong>Diplomakiállítás</strong>
+                            <p>Barcsay Terem, Magyar Képzőművészeti Egyetem, Budapest</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
         </section>
 
         <!-- SZIMPÓZIUMOK & MŰVÉSZTELEPEK -->
