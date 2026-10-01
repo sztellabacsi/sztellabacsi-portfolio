@@ -50,20 +50,22 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 40px 8%;
+            padding: 35px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(252, 251, 249, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(236, 232, 225, 0.8);
+            background: rgba(252, 251, 249, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(236, 232, 225, 0.7);
+            transition: all 0.4s var(--ease);
         }
 
         .logo {
             font-family: var(--font-title);
-            font-size: 1.6rem;
-            letter-spacing: 6px;
+            font-size: 1.55rem;
+            letter-spacing: 5px;
             font-weight: 300;
             text-transform: uppercase;
         }
@@ -71,12 +73,12 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 36px;
         }
 
         nav a {
             font-size: 0.75rem;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             color: var(--text-muted);
             transition: color 0.4s var(--ease);
@@ -86,25 +88,72 @@
             color: var(--text-main);
         }
 
-        .lang-select {
+        /* FINOM NYELVVÁLASZTÓ GOMB */
+        .lang-control {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-trigger {
             background: transparent;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 5px 8px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lang-trigger:hover {
+            color: var(--text-main);
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--surface);
             border: 1px solid var(--border);
-            padding: 6px 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: none;
+            flex-direction: column;
+            min-width: 140px;
+            z-index: 200;
+            padding: 8px 0;
+        }
+
+        .lang-menu.open {
+            display: flex;
+        }
+
+        .lang-opt {
+            background: transparent;
+            border: none;
+            padding: 7px 18px;
             font-family: var(--font-body);
             font-size: 0.72rem;
             letter-spacing: 1px;
-            color: var(--text-main);
-            border-radius: 0;
-            outline: none;
+            text-align: left;
+            color: var(--text-muted);
             cursor: pointer;
-            text-transform: uppercase;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lang-opt:hover, .lang-opt.active {
+            color: var(--text-main);
+            background: #faf8f5;
         }
 
         /* CV CONTAINER */
         .cv-wrapper {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 160px 8% 100px;
+            padding: 160px 7% 100px;
         }
 
         .cv-header {
@@ -113,8 +162,8 @@
         }
 
         .cv-tag {
-            font-size: 0.75rem;
-            letter-spacing: 5px;
+            font-size: 0.72rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--accent-gold);
             margin-bottom: 15px;
@@ -126,32 +175,45 @@
             font-size: clamp(2.4rem, 5vw, 3.8rem);
             font-weight: 300;
             line-height: 1.2;
+            letter-spacing: 1px;
         }
 
-        /* INTRO BIO */
+        /* BIO INTRO (PORTRÉ ÉS BEMUTATKOZÁS) */
         .bio-lead {
             display: grid;
             grid-template-columns: 320px 1fr;
-            gap: 60px;
+            gap: 70px;
             align-items: center;
-            margin-bottom: 100px;
+            margin-bottom: 90px;
+        }
+
+        .portrait-wrapper {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background-color: #f4f2ed;
         }
 
         .artist-portrait {
             width: 100%;
-            aspect-ratio: 3/4;
+            height: 100%;
             object-fit: cover;
+            filter: grayscale(12%);
+            transition: filter 0.6s var(--ease), transform 0.6s var(--ease);
+        }
+
+        .portrait-wrapper:hover .artist-portrait {
             filter: grayscale(0%);
+            transform: scale(1.02);
         }
 
         .bio-lead p {
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             line-height: 1.8;
         }
 
-        /* CV SECTIONS (TIMELINE / LISTS) */
+        /* CV SZEKCIÓK */
         .cv-section {
             margin-bottom: 70px;
             border-top: 1px solid var(--border);
@@ -160,7 +222,7 @@
 
         .cv-section-title {
             font-family: var(--font-title);
-            font-size: 1.9rem;
+            font-size: 2rem;
             font-weight: 300;
             margin-bottom: 35px;
             letter-spacing: 1px;
@@ -170,7 +232,7 @@
             display: grid;
             grid-template-columns: 140px 1fr;
             gap: 30px;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
             font-size: 0.92rem;
         }
 
@@ -186,46 +248,130 @@
             color: var(--text-main);
             display: block;
             margin-bottom: 4px;
+            font-size: 1rem;
         }
 
         .cv-detail p {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* FINOM ARCHÍVUM LENYITÓ */
+        .cv-archive {
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 25px;
+        }
+
+        .cv-archive summary {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            cursor: pointer;
+            list-style: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.4s var(--ease);
+            user-select: none;
+            outline: none;
+            padding: 8px 0;
+        }
+
+        .cv-archive summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .cv-archive summary:hover {
+            color: var(--text-main);
+        }
+
+        .cv-archive summary .archive-btn-text {
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.4s var(--ease);
+        }
+
+        .cv-archive summary:hover .archive-btn-text {
+            border-color: var(--accent-gold);
+        }
+
+        .cv-archive summary .toggle-icon {
+            font-size: 0.6rem;
+            color: var(--accent-gold);
+            transition: transform 0.5s var(--ease);
+            display: inline-block;
+        }
+
+        .cv-archive[open] summary .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .archive-content {
+            margin-top: 30px;
+            animation: luxuryReveal 0.6s var(--ease) forwards;
+        }
+
+        @keyframes luxuryReveal {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* FOOTER */
         footer {
             padding: 50px 8%;
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             letter-spacing: 2px;
             color: var(--text-muted);
             border-top: 1px solid var(--border);
             text-transform: uppercase;
         }
 
-        /* RTL SUPPORT (Arab) */
+        /* RTL (Arab) támogatás */
         [dir="rtl"] {
             text-align: right;
         }
+        [dir="rtl"] .cv-item {
+            direction: rtl;
+        }
+        [dir="rtl"] .lang-menu {
+            right: auto;
+            left: 0;
+        }
 
-        /* RESPONSIVE (Mobil, iPhone SE) */
+        /* RESPONSIVE FINOMÍTÁSOK */
         @media (max-width: 900px) {
             header {
-                padding: 20px 5%;
-                flex-direction: column;
-                gap: 15px;
+                padding: 18px 5%;
+                flex-wrap: wrap;
+            }
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
             }
             nav ul {
-                gap: 20px;
-                flex-wrap: wrap;
+                gap: 16px;
                 justify-content: center;
+                overflow-x: auto;
+                scrollbar-width: none;
+                padding-bottom: 4px;
             }
+            nav ul::-webkit-scrollbar { display: none; }
             .bio-lead {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            .artist-portrait {
+            .portrait-wrapper {
                 max-width: 320px;
                 margin: 0 auto;
             }
@@ -235,93 +381,22 @@
         }
 
         @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+            }
+            nav a {
+                font-size: 0.65rem;
+                letter-spacing: 1.5px;
+            }
             .cv-item {
                 grid-template-columns: 1fr;
-                gap: 5px;
+                gap: 4px;
             }
             .cv-year {
                 font-size: 1rem;
             }
         }
-    <!-- EGYÉNI ÉS CSOPORTOS KIÁLLÍTÁSOK -->
-        <section class="cv-section">
-            <h2 class="cv-section-title">Válogatott Kiállítások</h2>
-
-            <!-- Fő kiemelések (itt csak a legfontosabb 3 tárlat szerepel láthatóan) -->
-            <div class="cv-item">
-                <span class="cv-year">2026</span>
-                <div class="cv-detail">
-                    <strong>Organikus Terek – Szimbiózis</strong>
-                    <p>Egyéni kiállítás · Kortárs Design Galéria, Budapest</p>
-                </div>
-            </div>
-
-            <div class="cv-item">
-                <span class="cv-year">2024</span>
-                <div class="cv-detail">
-                    <strong>Anyag & Csend – Kortárs Plasztikák</strong>
-                    <p>Csoportos tárlat · Kölcsey Központ, Debrecen</p>
-                </div>
-            </div>
-
-            <div class="cv-item">
-                <span class="cv-year">2021</span>
-                <div class="cv-detail">
-                    <strong>Figurális Átiratok</strong>
-                    <p>Kamarakiállítás · Művésztelepi Galéria, Szentendre</p>
-                </div>
-            </div>
-
-            <!-- DISZKRÉT, INTEGRÁLT ARCHÍVUM FÜL -->
-            <details class="cv-archive">
-                <summary>
-                    <span class="archive-btn-text">Teljes kiállítási jegyzék megtekintése</span>
-                    <span class="toggle-icon">▼</span>
-                </summary>
-
-                <div class="archive-content">
-                    <div class="cv-item">
-                        <span class="cv-year">2020</span>
-                        <div class="cv-detail">
-                            <strong>Föld és Forma</strong>
-                            <p>Kortárs Kerámia és Plasztika Biennálé, Pécs</p>
-                        </div>
-                    </div>
-
-                    <div class="cv-item">
-                        <span class="cv-year">2019</span>
-                        <div class="cv-detail">
-                            <strong>Térrétegek</strong>
-                            <p>Csoportos tárlat · B32 Galéria, Budapest</p>
-                        </div>
-                    </div>
-
-                    <div class="cv-item">
-                        <span class="cv-year">2018</span>
-                        <div class="cv-detail">
-                            <strong>Természetes Formanyelv</strong>
-                            <p>Nemzetközi Kortárs Művészeti Vásár, Bécs</p>
-                        </div>
-                    </div>
-
-                    <div class="cv-item">
-                        <span class="cv-year">2017</span>
-                        <div class="cv-detail">
-                            <strong>Kísérleti Struktúrák</strong>
-                            <p>Fiatal Képzőművészek Stúdiója kiállítása, Miskolc</p>
-                        </div>
-                    </div>
-
-                    <div class="cv-item">
-                        <span class="cv-year">2016</span>
-                        <div class="cv-detail">
-                            <strong>Diplomakiállítás</strong>
-                            <p>Barcsay Terem, Magyar Képzőművészeti Egyetem, Budapest</p>
-                        </div>
-                    </div>
-                </div>
-            </details>
-        </section>
     </style>
 </head>
 <body>
@@ -329,50 +404,57 @@
     <!-- HEADER -->
     <header>
         <div class="logo"><a href="index.html">Sztella Bácsi</a></div>
+        
+        <!-- DISZKRÉT NYELVVÁLASZTÓ -->
+        <div class="lang-control">
+            <button id="currentLangBtn" class="lang-trigger" onclick="toggleLangDropdown(event)" aria-label="Nyelv választása">
+                HU <span style="font-size: 0.6rem; opacity: 0.7;">▾</span>
+            </button>
+            <div id="langDropdown" class="lang-menu">
+                <button class="lang-opt active" data-lang="hu" onclick="setSiteLanguage('hu')">Magyar (HU)</button>
+                <button class="lang-opt" data-lang="en" onclick="setSiteLanguage('en')">English (EN)</button>
+                <button class="lang-opt" data-lang="de" onclick="setSiteLanguage('de')">Deutsch (DE)</button>
+                <button class="lang-opt" data-lang="fr" onclick="setSiteLanguage('fr')">Français (FR)</button>
+                <button class="lang-opt" data-lang="it" onclick="setSiteLanguage('it')">Italiano (IT)</button>
+                <button class="lang-opt" data-lang="es" onclick="setSiteLanguage('es')">Español (ES)</button>
+                <button class="lang-opt" data-lang="ar" onclick="setSiteLanguage('ar')">العربية (AR)</button>
+                <button class="lang-opt" data-lang="ja" onclick="setSiteLanguage('ja')">日本語 (JA)</button>
+                <button class="lang-opt" data-lang="ko" onclick="setSiteLanguage('ko')">한국어 (KO)</button>
+                <button class="lang-opt" data-lang="zh" onclick="setSiteLanguage('zh')">中文 (ZH)</button>
+            </div>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="about.html" class="active" data-i18n="nav_about">Rólam</a></li>
-                <li><a href="index.html#philosophy" data-i18n="nav_philosophy">Filozófia</a></li>
+                <li><a href="index.html#about" data-i18n="nav_philosophy">Filozófia</a></li>
                 <li><a href="index.html#gallery" data-i18n="nav_gallery">Kollekció</a></li>
                 <li><a href="index.html#partners" data-i18n="nav_partners">Belsőépítészet</a></li>
                 <li><a href="index.html#contact" data-i18n="nav_contact">Kapcsolat</a></li>
             </ul>
         </nav>
-        <div class="lang-selector-wrap">
-            <select id="langSelect" onchange="changeLanguage(this.value)" class="lang-select">
-                <option value="hu">HU</option>
-                <option value="en">EN</option>
-                <option value="de">DE</option>
-                <option value="fr">FR</option>
-                <option value="it">IT</option>
-                <option value="es">ES</option>
-                <option value="ar">العربية (AR)</option>
-                <option value="ja">日本語 (JA)</option>
-                <option value="ko">한국어 (KO)</option>
-                <option value="zh">中文 (ZH)</option>
-            </select>
-        </div>
     </header>
 
     <!-- CONTENT WRAPPER -->
     <main class="cv-wrapper">
         <div class="cv-header">
-            <span class="cv-tag" data-i18n="cv_tag">Alkotói Pályakép</span>
-            <h1 class="cv-title" data-i18n="about_title">Szakmai Önéletrajz & Kiállítások</h1>
+            <span class="cv-tag">Alkotói Pályakép</span>
+            <h1 class="cv-title">Szakmai Önéletrajz & Kiállítások</h1>
         </div>
 
         <!-- BIO INTRO -->
         <div class="bio-lead">
-            <div>
-                <img src="images/profil.png" alt="Sztella Bácsi" class="artist-portrait">
+            <div class="portrait-wrapper">
+                <!-- A te feltöltött képed helye az images mappában -->
+                <img src="images/portrait.jpg" alt="Sztella Bácsi" class="artist-portrait">
             </div>
             <div>
                 <p><strong>Bácsi Sztella</strong> képzőművész és formatervező. Munkásságának középpontjában az organikus matériák – agyag, vályog, nemesfák, természetes pigmentek – és a kortárs modern terek harmonikus szimbiózisa áll.</p>
-                <p>Alkotásaiban a figurális kifejezésmód ötvöződik a szobrászati funkcionalizmussal. Számos hazai és nemzetközi magángyűjteményben és reprezentatív enteriőrben jelennek meg plasztikái és festményei.</p>
+                <p>Alkotásaiban a figurális kifejezésmód ötvöződik a szobrászati funkcionalizmussal. Számos hazai és nemzetközi magángyűjteményben, rezidencián és reprezentatív enteriőrben jelennek meg plasztikái és nagyméretű festményei.</p>
             </div>
         </div>
 
-        <!-- TANULMÁNYOK / VÉGZETTSÉGEK -->
+        <!-- TANULMÁNYOK -->
         <section class="cv-section">
             <h2 class="cv-section-title">Tanulmányok & Végzettségek</h2>
             
@@ -397,6 +479,7 @@
         <section class="cv-section">
             <h2 class="cv-section-title">Válogatott Kiállítások</h2>
 
+            <!-- Fő tárlatok -->
             <div class="cv-item">
                 <span class="cv-year">2026</span>
                 <div class="cv-detail">
@@ -409,55 +492,5 @@
                 <span class="cv-year">2024</span>
                 <div class="cv-detail">
                     <strong>Anyag & Csend – Kortárs Plasztikák</strong>
-                    <p>Csoportos tárlat · Kölcsey Központ, Debrecen</p>
-                </div>
-            </div>
+                    <p>I cannot browse or fetch live web pages directly via URL. 
 
-            <div class="cv-item">
-                <span class="cv-year">2021</span>
-                <div class="cv-detail">
-                    <strong>Figurális Átiratok</strong>
-                    <p>Kamarakiállítás · Művésztelepi Galéria, Szentendre</p>
-                </div>
-            </div>
-
-            <div class="cv-item">
-                <span class="cv-year">2018</span>
-                <div class="cv-detail">
-                    <strong>Természetes Formanyelv</strong>
-                    <p>Nemzetközi Kortárs Művészeti Vásár, Bécs</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SZIMPÓZIUMOK & MŰVÉSZTELEPEK -->
-        <section class="cv-section">
-            <h2 class="cv-section-title">Szimpóziumok & Művésztelepek</h2>
-
-            <div class="cv-item">
-                <span class="cv-year">2025</span>
-                <div class="cv-detail">
-                    <strong>Nemzetközi Kerámia és Föld-Plasztikai Szimpózium</strong>
-                    <p>Hortobágyi Alkotótelep – Kísérleti vályog- és agyagformák építészeti térben.</p>
-                </div>
-            </div>
-
-            <div class="cv-item">
-                <span class="cv-year">2022</span>
-                <div class="cv-detail">
-                    <strong>Modern Faszobrászati Műhely</strong>
-                    <p>Alpok-Adria Művészeti Fórum, Szlovénia – Rezonáló fa- és fényinstallációk.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        &copy; 2026 Sztella Bácsi Art Portfolio · All Rights Reserved
-    </footer>
-
-    <!-- FORDÍTÓ ÉS NYELVKEZELŐ SCRIPT -->
-    <script src="translations.js"></script>
-</body>
-</html>
