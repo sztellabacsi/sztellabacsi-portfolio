@@ -156,7 +156,7 @@
 
         .section-meta {
             text-align: center;
-            margin-bottom: 70px;
+            margin-bottom: 80px;
         }
 
         .section-tag {
@@ -200,19 +200,7 @@
             border-left: 1px solid var(--accent-gold);
         }
 
-        /* =======================================================
-           KURÁTORI EDITORIAL GALÉRIA STÍLUSOK
-           ======================================================= */
-        .gallery-intro {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-top: 15px;
-            font-weight: 300;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
+        /* GALLERY FILTER & GRID */
         .filters {
             display: flex;
             justify-content: center;
@@ -237,106 +225,61 @@
 
         .filter-link.active, .filter-link:hover {
             color: var(--text-main);
-            border-color: var(--accent-gold);
+            border-color: var(--text-main);
         }
 
-        /* 12 OSZLOPOS KURÁTORI RÁCS */
-        .curated-grid {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 45px 30px;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 50px 35px;
         }
 
-        .art-card {
-            grid-column: span 4;
+        .artwork-item {
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.5s var(--ease);
+            transition: transform 0.4s var(--ease);
         }
 
-        /* Kiemelt széles kártya (pl. nagy formátumú vászon vagy fényszobor) */
-        .art-card.featured {
-            grid-column: span 8;
-        }
-
-        /* Kiemelt magas kártya (pl. álló plasztikák) */
-        .art-card.tall {
-            grid-column: span 4;
-        }
-
-        .art-figure {
+        .artwork-img-wrapper {
             position: relative;
-            width: 100%;
             aspect-ratio: 3/4;
-            background: #f4f2ed;
             overflow: hidden;
+            background-color: #f4f2ed;
             margin-bottom: 20px;
         }
 
-        .art-card.featured .art-figure {
-            aspect-ratio: 16/10;
-        }
-
-        .art-figure img {
+        .artwork-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(8%) contrast(98%);
+            filter: grayscale(10%);
             transition: transform 0.8s var(--ease), filter 0.8s var(--ease);
         }
 
-        .art-card:hover .art-figure img {
-            transform: scale(1.035);
-            filter: grayscale(0%) contrast(100%);
+        .artwork-item:hover .artwork-img-wrapper img {
+            transform: scale(1.03);
+            filter: grayscale(0%);
         }
 
-        /* Finom státuszjelölő lebegő címke */
-        .art-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 0.62rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            background: rgba(252, 251, 249, 0.92);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: var(--text-muted);
-            border: 1px solid rgba(236, 232, 225, 0.7);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .art-badge.available {
-            color: var(--accent-gold);
-            border-color: rgba(179, 146, 82, 0.35);
-        }
-
-        .art-meta {
+        .artwork-details {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            gap: 15px;
+            align-items: flex-start;
         }
 
-        .art-title {
+        .artwork-title {
             font-family: var(--font-title);
             font-size: 1.55rem;
             font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
 
-        .art-specs {
-            font-size: 0.78rem;
+        .artwork-sub {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            letter-spacing: 0.3px;
         }
 
-        .art-price-tag {
-            font-size: 0.88rem;
+        .artwork-price {
+            font-size: 0.9rem;
             letter-spacing: 1px;
             color: var(--text-main);
             text-align: right;
@@ -459,15 +402,6 @@
         }
 
         /* RESPONSIVE FINOMÍTÁSOK */
-        @media (max-width: 1024px) {
-            .art-card, .art-card.tall {
-                grid-column: span 6;
-            }
-            .art-card.featured {
-                grid-column: span 12;
-            }
-        }
-
         @media (max-width: 900px) {
             .philosophy-grid, .contact-layout, .b2b-grid, .modal-content {
                 grid-template-columns: 1fr;
@@ -495,27 +429,6 @@
         }
 
         /* IPHONE SE & KIS KIJELZŐK */
-        @media (max-width: 600px) {
-            .curated-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 40px;
-            }
-            .art-card, .art-card.featured, .art-card.tall {
-                width: 100%;
-            }
-            .art-card.featured .art-figure {
-                aspect-ratio: 4/3;
-            }
-            .art-meta {
-                flex-direction: column;
-                gap: 5px;
-            }
-            .art-price-tag {
-                text-align: left;
-            }
-        }
-
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.2rem;
@@ -527,6 +440,17 @@
             }
             .hero-title {
                 font-size: 2.1rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .artwork-details {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .artwork-price {
+                text-align: left;
             }
             .btn-minimal {
                 width: 100%;
@@ -558,7 +482,7 @@
     <section class="hero">
         <span class="hero-sub">Exkluzív Képzőművészeti Katalógus</span>
         <h1 class="hero-title">Karakteres szimbiózis a terekben.</h1>
-        <p class="hero-desc">Válogatott festmények, plasztikák és lámpa-szobrok reprezentatív enteriőrökhöz.</p>
+        <p class="hero-desc">Válogatott festmények, plasztikák és lámpa-szobrok.</p>
         <a href="#gallery" class="btn-minimal">Katalógus Megtekintése</a>
     </section>
 
@@ -580,12 +504,11 @@
         </div>
     </section>
 
-    <!-- GALLERY (CURATED EDITORIAL RENDSZER) -->
+    <!-- GALLERY -->
     <section id="gallery">
         <div class="section-meta">
-            <span class="section-tag">Kurátori Szelekció</span>
+            <span class="section-tag">Szelektált Portfólió</span>
             <h2 class="section-title">Gyűjtemény & Katalógus</h2>
-            <p class="gallery-intro">Festmények, organikus térplasztikák és funkcionális fényszobrok, amelyek harmonikus szimbiózisba lépnek az építészeti térrel.</p>
         </div>
 
         <div class="filters">
@@ -595,94 +518,88 @@
             <button class="filter-link" onclick="filterArt('lampa', this)">Lámpa-szobrok</button>
         </div>
 
-        <div class="curated-grid">
-            <!-- 1. KIEMELT VÁSZON (FEATURED: Széles, reprezentatív arány) -->
-            <div class="art-card featured" data-cat="festmeny" onclick="openModal('Organikus Ébredés', 'Modern Figurális / Szürrealizmus (2026)', '120 × 90 cm (Vakráma)', 'Vegyes technika, akril, aranyfüst, struktúrpaszta', '980 000 Ft + ÁFA', 'Ideális választás minimalista, monokróm vagy natúr tónusú modern nappalikba, office termekbe. Elhelyezés: legalább 220 cm széles kanapé felett. Térstílus: Japandi, Organic Modern, Modern Luxus.', 'images/organikusebredes.png')">
-                <div class="art-figure">
-                    <span class="art-badge available">Elérhető</span>
+        <div class="gallery-grid">
+            <!-- Item 1 -->
+            <div class="artwork-item" data-cat="festmeny" onclick="openModal('Organikus Ébredés', 'Modern Figurális / Szürrealizmus (2026)', '120 × 90 cm (Vakráma)', 'Vegyes technika, akril, aranyfüst, struktúrpaszta', '980 000 Ft + ÁFA', 'Ideális választás minimalista, monokróm vagy natúr tónusú modern nappalikba, office termekbe. Elhelyezés: legalább 220 cm széles kanapé felett. Térstílus: Japandi, Organic Modern, Modern Luxus.', 'images/organikusebredes.png')">
+                <div class="artwork-img-wrapper">
                     <img src="images/organikusebredes.png" alt="Organikus Ébredés">
                 </div>
-                <div class="art-meta">
+                <div class="artwork-details">
                     <div>
-                        <h3 class="art-title">Organikus Ébredés</h3>
-                        <p class="art-specs">Vegyes technika, akril, aranyfüst · 120 × 90 cm</p>
+                        <h3 class="artwork-title">Organikus Ébredés</h3>
+                        <p class="artwork-sub">Vegyes technika, akril, aranyfüst · 120 × 90 cm</p>
                     </div>
-                    <div class="art-price-tag">980 000 Ft <small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                    <div class="artwork-price">980 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
                 </div>
             </div>
 
-            <!-- 2. KÁRTYA (Monokróm festmény) -->
-            <div class="art-card" data-cat="festmeny" onclick="openModal('Untitled', 'Hiperrealizmus / Monokróm (2021)', '40 × 50 cm', 'Akril & Olaj vásznon', '320 000 Ft + ÁFA', 'Fekete-fehér monokróm árnyalatok és mély anatómiai kifejezőerő. Kiválóan illeszkedik galériafal elrendezésben sötét tölgy, látszóbeton és mikrocement felületek mellé privát hálószobákba.', 'images/untitled.png')">
-                <div class="art-figure">
-                    <span class="art-badge">Magángyűjteményben</span>
+            <!-- Item 2 -->
+            <div class="artwork-item" data-cat="festmeny" onclick="openModal('Untitled', 'Hiperrealizmus / Monokróm (2021)', '40 × 50 cm', 'Akril & Olaj vásznon', '320 000 Ft + ÁFA', 'Fekete-fehér monokróm árnyalatok és mély anatómiai kifejezőerő. Kiválóan illeszkedik galériafal elrendezésben sötét tölgy, látszóbeton és mikrocement felületek mellé privát hálószobákba.', 'images/untitled.png')">
+                <div class="artwork-img-wrapper">
                     <img src="images/untitled.png" alt="Untitled">
                 </div>
-                <div class="art-meta">
+                <div class="artwork-details">
                     <div>
-                        <h3 class="art-title">Untitled</h3>
-                        <p class="art-specs">Akril & Olaj vásznon · 40 × 50 cm</p>
+                        <h3 class="artwork-title">Untitled</h3>
+                        <p class="artwork-sub">Akril & Olaj vásznon · 40 × 50 cm</p>
                     </div>
-                    <div class="art-price-tag">320 000 Ft <small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                    <div class="artwork-price">320 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
                 </div>
             </div>
 
-            <!-- 3. KÁRTYA (Szobor - Kiemelt álló arány) -->
-            <div class="art-card tall" data-cat="szobor" onclick="openModal('Own Body', 'Organikus Szobrászat (2014)', '185 × 50 × 45 cm', 'Agyag, papír, rókabunda', '3 950 000 Ft + ÁFA', 'Háromdimenziós organikus szobor, amely nyitott terekben, megvilágított pódiumon vagy reprezentatív stúdiókban érvényesül a legjobban, ahol körbejárható.', 'images/papirszoborfej.png')">
-                <div class="art-figure">
-                    <span class="art-badge available">Elérhető</span>
-                    <img src="images/papirszoborkollazs.png" alt="Own Body">
-                </div>
-                <div class="art-meta">
-                    <div>
-                        <h3 class="art-title">Own Body</h3>
-                        <p class="art-specs">Agyag, papír, rókabunda · 185 cm</p>
-                    </div>
-                    <div class="art-price-tag">3 950 000 Ft <small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
-                </div>
-            </div>
-
-            <!-- 4. KÁRTYA (Térplasztika) -->
-            <div class="art-card" data-cat="szobor" onclick="openModal('Behálózva', 'Konceptuális Plasztika (2015)', '140 × 80 × 75 cm', 'Vályog, föld, háló, fa', '4 500 000 Ft + ÁFA', 'Természetes alapanyagokból építkező térplasztika. Karakteres fókuszpontot képez tágas hallokban és reprezentatív ügyfélfogadó terekben.', 'images/faszob3.png')">
-                <div class="art-figure">
-                    <span class="art-badge available">Elérhető</span>
-                    <img src="images/faszob3.png" alt="Behálózva">
-                </div>
-                <div class="art-meta">
-                    <div>
-                        <h3 class="art-title">Behálózva</h3>
-                        <p class="art-specs">Vályog, föld, háló, fa · 140 cm</p>
-                    </div>
-                    <div class="art-price-tag">4 500 000 Ft <small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
-                </div>
-            </div>
-
-            <!-- 5. KIEMELT LÁMPA-SZOBOR (FEATURED: Széles, atmoszférikus kártya) -->
-            <div class="art-card featured" data-cat="lampa" onclick="openModal('Sculptural Lamp', 'Organikus Modern Minimalizmus (2026)', '140 cm magasság', 'Juharfa, integrált LED fénysáv', '970 000 Ft + ÁFA', 'Funkcionális művészeti alkotás és atmoszférikus világítás. A meleg juharfa és a finom fénysáv tökéletes egyensúlyt teremt modern és Japandi terekben.', 'images/lampa1_1.png')">
-                <div class="art-figure">
-                    <span class="art-badge available">Limitált széria</span>
-                    <img src="images/lampa1.png" alt="Sculptural Lamp">
-                </div>
-                <div class="art-meta">
-                    <div>
-                        <h3 class="art-title">Sculptural Lamp</h3>
-                        <p class="art-specs">Juharfa, LED · 140 cm</p>
-                    </div>
-                    <div class="art-price-tag">970 000 Ft <small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
-                </div>
-            </div>
-
-            <!-- 6. KÁRTYA (Monokróm festmény) -->
-            <div class="art-card" data-cat="festmeny" onclick="openModal('Monokróm', 'Kortárs Figurális (2021-2026)', '40×50 cm', 'Olaj & Akril vásznon', '290 000 Ft + ÁFA', 'A monokróm fény-árnyék kontrasztok és a mély fekete tónusok kifinomult atmoszférát teremtenek.', 'images/monokrom.PNG')">
-                <div class="art-figure">
-                    <span class="art-badge available">Elérhető</span>
+            <!-- Item 3 -->
+            <div class="artwork-item" data-cat="festmeny" onclick="openModal('Monokróm', 'Kortárs Figurális (2021-2026)', '40×50 cm', 'Olaj & Akril vásznon', '290 000 Ft + ÁFA', 'A monokróm fény-árnyék kontrasztok és a mély fekete tónusok kifinomult atmoszférát teremtenek.', 'images/monokrom.PNG')">
+                <div class="artwork-img-wrapper">
                     <img src="images/monokrom.PNG" alt="Monokróm">
                 </div>
-                <div class="art-meta">
+                <div class="artwork-details">
                     <div>
-                        <h3 class="art-title">Monokróm</h3>
-                        <p class="art-specs">Olaj & Akril vásznon · 40 × 50 cm</p>
+                        <h3 class="artwork-title">Monokróm</h3>
+                        <p class="artwork-sub">Olaj & Akril vásznon · Sorozat</p>
                     </div>
-                    <div class="art-price-tag">290 000 Ft <small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                    <div class="artwork-price">620 000 Ft-tól<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="artwork-item" data-cat="szobor" onclick="openModal('Own Body', 'Organikus Szobrászat (2014)', '185 × 50 × 45 cm', 'Agyag, papír, rókabunda', '3 950 000 Ft + ÁFA', 'Háromdimenziós organikus szobor, amely nyitott terekben, megvilágított pódiumon vagy reprezentatív stúdiókban érvényesül a legjobban, ahol körbejárható.', 'images/papirszoborfej.png')">
+                <div class="artwork-img-wrapper">
+                    <img src="images/papirszoborkollazs.png" alt="Own Body">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Own Body</h3>
+                        <p class="artwork-sub">Agyag, papír, rókabunda · 185 cm</p>
+                    </div>
+                    <div class="artwork-price">3 950 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="artwork-item" data-cat="szobor" onclick="openModal('Behálózva', 'Konceptuális Plasztika (2015)', '140 × 80 × 75 cm', 'Vályog, föld, háló, fa', '4 500 000 Ft + ÁFA', 'Természetes alapanyagokból építkező térplasztika. Karakteres fókuszpontot képez tágas hallokban és reprezentatív ügyfélfogadó terekben.', 'images/faszob3.png')">
+                <div class="artwork-img-wrapper">
+                    <img src="images/faszob3.png" alt="Behálózva">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Behálózva</h3>
+                        <p class="artwork-sub">Vályog, föld, háló, fa · Installáció</p>
+                    </div>
+                    <div class="artwork-price">4 500 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="artwork-item" data-cat="lampa" onclick="openModal('Sculptural Lamp', 'Organikus Modern Minimalizmus (2026)', '140 cm magasság', 'Juharfa, integrált LED fénysáv', '970 000 Ft + ÁFA', 'Funkcionális művészeti alkotás és atmoszférikus világítás. A meleg juharfa és a finom fénysáv tökéletes egyensúlyt teremt modern és Japandi terekben.', 'images/lampa1_1.png')">
+                <div class="artwork-img-wrapper">
+                    <img src="images/lampa1.png" alt="Sculptural Lamp">
+                </div>
+                <div class="artwork-details">
+                    <div>
+                        <h3 class="artwork-title">Sculptural Lamp</h3>
+                        <p class="artwork-sub">Juharfa, LED · 140 cm</p>
+                    </div>
+                    <div class="artwork-price">970 000 Ft<br><small style="font-size:0.7rem; color:var(--text-muted)">+ ÁFA</small></div>
                 </div>
             </div>
         </div>
@@ -778,9 +695,9 @@
             document.querySelectorAll('.filter-link').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            document.querySelectorAll('.art-card').forEach(item => {
+            document.querySelectorAll('.artwork-item').forEach(item => {
                 if(cat === 'all' || item.getAttribute('data-cat') === cat) {
-                    item.style.display = 'flex';
+                    item.style.display = 'block';
                 } else {
                     item.style.display = 'none';
                 }
