@@ -83,10 +83,16 @@
             z-index: 1002;
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
-            gap: 36px;
+            gap: 32px;
         }
 
         nav a {
@@ -102,13 +108,102 @@
             color: var(--text-main);
         }
 
+        /* DESKTOP LENYÍLÓ NYELVVÁLASZTÓ */
+        .lang-dropdown {
+            position: relative;
+            padding-left: 24px;
+            border-left: 1px solid var(--border);
+            z-index: 1002;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 0;
+            transition: color 0.3s var(--ease);
+        }
+
+        .lang-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .lang-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.3s var(--ease);
+            color: var(--accent-gold);
+        }
+
+        .lang-dropdown.open .lang-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: calc(100% + 14px);
+            right: 0;
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            min-width: 135px;
+            padding: 8px 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: all 0.3s var(--ease);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .lang-dropdown.open .lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-menu li a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 18px;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: all 0.25s var(--ease);
+        }
+
+        .lang-menu li a:hover {
+            color: var(--text-main);
+            background-color: #f4f2ed;
+        }
+
+        .lang-menu li a.active {
+            color: var(--accent-gold);
+            font-weight: 400;
+        }
+
+        /* MOBIL HAMBURGER MENÜBE ÁGYAZOTT NYELVVÁLASZTÓ (Desktopon rejtett) */
+        .mobile-lang-block {
+            display: none;
+        }
+
         /* HAMBURGER ICON (Desktopon rejtett) */
         .hamburger {
             display: none;
             flex-direction: column;
             justify-content: space-between;
-            width: 26px;
-            height: 18px;
+            width: 24px;
+            height: 16px;
             background: none;
             border: none;
             cursor: pointer;
@@ -125,15 +220,14 @@
             transform-origin: center;
         }
 
-        /* Hamburger X animáció */
         .hamburger.active span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
+            transform: translateY(7.5px) rotate(45deg);
         }
         .hamburger.active span:nth-child(2) {
             opacity: 0;
         }
         .hamburger.active span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
+            transform: translateY(-7.5px) rotate(-45deg);
         }
 
         /* HERO SECTION */
@@ -456,10 +550,15 @@
             text-transform: uppercase;
         }
 
-        /* RESPONSIVE & HAMBURGER MENÜ (900px alatt) */
-        @media (max-width: 900px) {
+        /* RESPONSIVE & HAMBURGER MENÜBE ÁGYAZOTT NYELVVÁLASZTÓ */
+        @media (max-width: 1024px) {
             header {
                 padding: 20px 6%;
+            }
+
+            /* A desktopos lenyíló eltűnik a fejlécből, így csak a logó és a hamburger marad */
+            .lang-dropdown {
+                display: none;
             }
 
             .hamburger {
@@ -475,13 +574,16 @@
                 height: 100dvh;
                 background-color: var(--bg);
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                padding: 80px 8% 40px;
                 opacity: 0;
                 visibility: hidden;
                 pointer-events: none;
                 transition: opacity 0.4s var(--ease), visibility 0.4s var(--ease);
                 z-index: 1001;
+                overflow-y: auto;
             }
 
             nav.open {
@@ -493,11 +595,11 @@
             nav ul {
                 flex-direction: column;
                 align-items: center;
-                gap: 28px;
-                padding: 20px;
+                gap: 22px;
+                width: 100%;
             }
 
-            nav a {
+            nav ul li a {
                 font-family: var(--font-title);
                 font-size: 1.85rem;
                 letter-spacing: 3px;
@@ -505,6 +607,56 @@
                 text-transform: none;
             }
 
+            /* Hamburger menü aljába ágyazott nyelvválasztó blokk */
+            .mobile-lang-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 38px;
+                padding-top: 28px;
+                border-top: 1px solid var(--border);
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .mobile-lang-label {
+                font-size: 0.62rem;
+                letter-spacing: 3.5px;
+                text-transform: uppercase;
+                color: var(--accent-gold);
+                margin-bottom: 16px;
+            }
+
+            .mobile-lang-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px 18px;
+            }
+
+            .mobile-lang-grid a {
+                font-family: var(--font-body);
+                font-size: 0.72rem;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--text-muted);
+                padding: 4px 2px;
+                border-bottom: 1px solid transparent;
+                transition: all 0.3s var(--ease);
+            }
+
+            .mobile-lang-grid a:hover {
+                color: var(--text-main);
+            }
+
+            .mobile-lang-grid a.active {
+                color: var(--text-main);
+                border-bottom-color: var(--accent-gold);
+                font-weight: 400;
+            }
+        }
+
+        @media (max-width: 900px) {
             .philosophy-grid, .contact-layout, .b2b-grid, .modal-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -515,7 +667,7 @@
             }
         }
 
-        /* IPHONE SE & KIS KIJELZŐK (320px - 480px) */
+        /* IPHONE SE & KIS KIJELZŐK */
         @media (max-width: 480px) {
             header {
                 padding: 18px 5%;
@@ -523,6 +675,26 @@
             .logo {
                 font-size: 1.15rem;
                 letter-spacing: 2.5px;
+            }
+            .hamburger {
+                width: 22px;
+                height: 15px;
+            }
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+            nav ul {
+                gap: 16px;
+            }
+            nav ul li a {
+                font-size: 1.65rem;
+            }
+            .mobile-lang-block {
+                margin-top: 28px;
+                padding-top: 22px;
             }
             .hero {
                 padding: 100px 5% 50px;
@@ -590,21 +762,53 @@
     <header>
         <div class="logo"><a href="index.html">Sztella Bácsi</a></div>
         
-        <button class="hamburger" id="hamburgerBtn" aria-label="Menü megnyitása" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-right">
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="about.html" onclick="closeMenu()">Rólam</a></li>
+                    <li><a href="#about" onclick="closeMenu()">Filozófia</a></li>
+                    <li><a href="#gallery" onclick="closeMenu()">Kollekció</a></li>
+                    <li><a href="#partners" onclick="closeMenu()">Belsőépítészet</a></li>
+                    <li><a href="#contact" onclick="closeMenu()">Kapcsolat</a></li>
+                </ul>
 
-        <nav id="mainNav">
-            <ul>
-                <li><a href="about.html" onclick="closeMenu()">Rólam</a></li>
-                <li><a href="#about" onclick="closeMenu()">Filozófia</a></li>
-                <li><a href="#gallery" onclick="closeMenu()">Kollekció</a></li>
-                <li><a href="#partners" onclick="closeMenu()">Belsőépítészet</a></li>
-                <li><a href="#contact" onclick="closeMenu()">Kapcsolat</a></li>
-            </ul>
-        </nav>
+                <!-- HAMBURGER MENÜBE ÁGYAZOTT NYELVVÁLASZTÓ (Mobilon jelenik meg) -->
+                <div class="mobile-lang-block" aria-label="Nyelvválasztás">
+                    <span class="mobile-lang-label">Nyelv / Language</span>
+                    <div class="mobile-lang-grid">
+                        <a href="index.html" class="active" onclick="closeMenu()">HU</a>
+                        <a href="index-en.html" onclick="comingSoon(event, 'English')">EN</a>
+                        <a href="index-de.html" onclick="comingSoon(event, 'Deutsch')">DE</a>
+                        <a href="index-fr.html" onclick="comingSoon(event, 'Français')">FR</a>
+                        <a href="index-it.html" onclick="comingSoon(event, 'Italiano')">IT</a>
+                        <a href="index-es.html" onclick="comingSoon(event, 'Español')">ES</a>
+                        <a href="index-nl.html" onclick="comingSoon(event, 'Nederlands')">NL</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- DESKTOP LENYÍLÓ NYELVVÁLASZTÓ (Csak nagyobb képernyőn látszik) -->
+            <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-btn" onclick="toggleLangMenu(event)" aria-label="Nyelv kiválasztása">
+                    HU <span class="lang-arrow">&#9662;</span>
+                </button>
+                <ul class="lang-menu">
+                    <li><a href="index.html" class="active"><span>HU</span> <small style="color:var(--text-muted); font-size:0.6rem;">Magyar</small></a></li>
+                    <li><a href="index-en.html" onclick="comingSoon(event, 'English')"><span>EN</span> <small style="color:var(--text-muted); font-size:0.6rem;">English</small></a></li>
+                    <li><a href="index-de.html" onclick="comingSoon(event, 'Deutsch')"><span>DE</span> <small style="color:var(--text-muted); font-size:0.6rem;">Deutsch</small></a></li>
+                    <li><a href="index-fr.html" onclick="comingSoon(event, 'Français')"><span>FR</span> <small style="color:var(--text-muted); font-size:0.6rem;">Français</small></a></li>
+                    <li><a href="index-it.html" onclick="comingSoon(event, 'Italiano')"><span>IT</span> <small style="color:var(--text-muted); font-size:0.6rem;">Italiano</small></a></li>
+                    <li><a href="index-es.html" onclick="comingSoon(event, 'Español')"><span>ES</span> <small style="color:var(--text-muted); font-size:0.6rem;">Español</small></a></li>
+                    <li><a href="index-nl.html" onclick="comingSoon(event, 'Nederlands')"><span>NL</span> <small style="color:var(--text-muted); font-size:0.6rem;">Nederlands</small></a></li>
+                </ul>
+            </div>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menü megnyitása" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
 
     <!-- HERO -->
@@ -820,6 +1024,19 @@
 
     <!-- JAVASCRIPT LOGIKA -->
     <script>
+        // Desktop lenyíló nyelvválasztó kezelése
+        function toggleLangMenu(event) {
+            event.stopPropagation();
+            document.getElementById('langDropdown').classList.toggle('open');
+        }
+
+        function comingSoon(event, langName) {
+            event.preventDefault();
+            document.getElementById('langDropdown').classList.remove('open');
+            closeMenu();
+            alert('A(z) ' + langName + ' nyelvű verzió hamarosan elérhető.');
+        }
+
         // Mobil hamburger menü nyitás/zárás
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
@@ -874,10 +1091,15 @@
             document.body.style.overflow = '';
         }
 
+        // Kattintás a modalon vagy a nyelvválasztón kívül -> bezárás
         window.onclick = function(event) {
             let modal = document.getElementById('artModal');
             if (event.target == modal) {
                 closeModal();
+            }
+            let langDropdown = document.getElementById('langDropdown');
+            if (langDropdown && !langDropdown.contains(event.target)) {
+                langDropdown.classList.remove('open');
             }
         }
     </script>
