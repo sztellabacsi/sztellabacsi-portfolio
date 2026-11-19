@@ -278,8 +278,10 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 50px 35px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .artwork-item {
